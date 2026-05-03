@@ -4,3 +4,6 @@ qiskit-aer
 numpy
 matplotlib
 qiskit-ibm-runtime
+pandas
+python-dotenv
+seaborn
