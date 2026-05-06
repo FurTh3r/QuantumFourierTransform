@@ -7,3 +7,4 @@ qiskit-ibm-runtime
 pandas
 python-dotenv
 seaborn
+psutil
