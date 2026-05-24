@@ -1,100 +1,70 @@
-# Digital Restoration of Motion Blur
+# Quantum Fourier Transform (QFT) Notebook
 
-This repository presents a systematic study and implementation of digital image restoration techniques for mitigating **motion blur** and **atmospheric turbulence** effects. The focus is on classical deconvolution methods and their practical performance under different noise and degradation conditions.
-
----
-
-## Project Overview
-
-Image restoration is a fundamental problem in computer vision and signal processing. This project demonstrates how degraded images can be recovered using frequency-domain and spatial-domain filtering techniques.
-
-### Goals
-
-* **Modeling Image Degradation**
-  Simulation of motion blur and atmospheric turbulence using Point Spread Functions (PSFs).
-
-* **Restoration Techniques**
-  Implementation and comparison of classical deconvolution methods:
-
-  * Inverse filtering
-  * Wiener filtering
-
-* **Quantitative Evaluation**
-  Performance assessment using standard image quality metrics:
-
-  * Peak Signal-to-Noise Ratio (PSNR)
-  * Structural Similarity Index Measure (SSIM)
+This repository contains an educational Jupyter notebook exploring the **Quantum Fourier Transform (QFT)**, the quantum analogue of the classical Discrete Fourier Transform (DFT).
 
 ---
 
-## Repository Structure
+## Overview
 
-```
-.
-├── filter_test_notebook.ipynb   # Main notebook with experiments and visualizations
-├── README.md                    # Project documentation
-├── Report.pdf                   # Report of the work (in Italian)
-├── images                       # Folder with notebook output images
-├── requirements.txt             # Needed libraries to execute the notebook
-```
+The Quantum Fourier Transform is a key building block in several quantum algorithms, enabling exponential speedups for specific computational problems. This notebook connects classical signal processing concepts with quantum computation, combining mathematical derivations and practical implementation using **Qiskit**.
 
 ---
 
-## Methodology
+## Contents
 
-The restoration pipeline follows three main stages:
+* **Introduction**
+  From the classical DFT to the Quantum Fourier Transform.
 
-### 1. Degradation Model
+* **Physical Interpretation**
+  Understanding the QFT through superposition and rotations on the Bloch sphere, including the intuition of “quantum phase encoding” and Fourier basis states.
 
-A clean image is degraded using a **Point Spread Function (PSF)** to simulate:
+* **Mathematical Foundations**
 
-* Motion blur
-* Atmospheric turbulence
+  * Single-qubit case (Hadamard gate equivalence)
+  * Extension to n qubits (tensor product structure)
+  * Matrix representation of $QFT_N$
 
-### 2. Restoration Process
+* **Circuit Implementation**
+  Construction using Hadamard gates and controlled phase rotations ($R_k$ gates).
 
-The degraded image is restored using classical deconvolution techniques:
+* **Applications**
 
-* Inverse filtering (frequency-domain reconstruction)
-* Wiener filtering (regularized restoration under noise)
+  * Shor’s algorithm
+  * Quantum phase estimation
+  * Period finding problems
 
-### 3. Evaluation
-
-Restoration quality is analyzed both:
-
-* **Qualitatively** (visual inspection)
-* **Quantitatively** (PSNR and SSIM metrics)
-
----
-
-## Results
-
-The experiments highlight the fundamental trade-off in deconvolution methods:
-
-* Improved detail recovery in low-noise scenarios
-* Noise amplification in ill-conditioned inversions
-* Strong dependence on SNR and PSF accuracy
-
-Wiener filtering generally provides more stable and robust results compared to pure inverse filtering, especially under noisy conditions.
+* **Code Implementation**
+  Qiskit-based implementation of the QFT circuit and visualization of results.
 
 ---
 
-## Requirements
+## Prerequisites
 
-Install dependencies with:
+Install the required dependencies (or use `requirements.txt`):
 
 ```bash
-pip install numpy pandas matplotlib scikit-image
+pip install qiskit qiskit-aer qiskit-ibm-runtime numpy scipy matplotlib seaborn pandas ipywidgets pylatexenc tqdm "qiskit[visualization]"
 ```
 
 ---
 
-## Author
+## How to Use
 
-**Lorenzo Pasini**
+1. Clone this repository.
+2. Open `qft_notebook.ipynb` in Jupyter Lab, Jupyter Notebook, or VS Code.
+3. Run the notebook sequentially to follow the theoretical development and simulations.
+
+---
+
+## Technologies Used
+
+* Python
+* Qiskit (quantum circuit construction and simulation)
+* Qiskit Aer (high-performance simulation backend)
+* Matplotlib / Seaborn (visualization)
 
 ---
 
 ## Notes
 
-This project is intended for educational and research purposes in digital image processing and inverse problems.
+This project is intended for educational purposes in quantum computing and quantum information theory.
