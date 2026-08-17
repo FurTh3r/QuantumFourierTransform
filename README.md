@@ -1,70 +1,108 @@
-# Quantum Fourier Transform (QFT) Notebook
+# Quantum Fourier Transform
 
-This repository contains an educational Jupyter notebook exploring the **Quantum Fourier Transform (QFT)**, the quantum analogue of the classical Discrete Fourier Transform (DFT).
+An educational and experimental study of the Quantum Fourier Transform (QFT), from its mathematical foundations to ideal, noisy, approximate, simulated, and IBM Quantum executions with Qiskit.
 
----
+The repository includes English and Italian notebooks, a written report, circuit diagrams, benchmark plots, and reproducible Python dependencies.
 
-## Overview
+## Topics Covered
 
-The Quantum Fourier Transform is a key building block in several quantum algorithms, enabling exponential speedups for specific computational problems. This notebook connects classical signal processing concepts with quantum computation, combining mathematical derivations and practical implementation using **Qiskit**.
+- the relationship between the classical DFT and the QFT;
+- Fourier-basis phase encoding;
+- the single-qubit Hadamard case;
+- the n-qubit tensor-product formulation;
+- matrix representation of QFT;
+- manual QFT and inverse-QFT circuit construction;
+- approximate QFT through controlled-rotation truncation;
+- soundness tests using QFT followed by inverse QFT;
+- ideal and noisy Aer simulations;
+- comparison with Qiskit's QFT implementation;
+- circuit complexity and CPU timing;
+- optional execution on IBM Quantum hardware.
 
----
+## Notebooks
 
-## Contents
+| File | Language | Description |
+| --- | --- | --- |
+| qft_notebook.ipynb | English | Main theoretical and experimental notebook. |
+| qft_notebook_ita.ipynb | Italian | Italian version of the study. |
+| QFT_Report.pdf | Italian | Written project report. |
 
-* **Introduction**
-  From the classical DFT to the Quantum Fourier Transform.
+## Requirements
 
-* **Physical Interpretation**
-  Understanding the QFT through superposition and rotations on the Bloch sphere, including the intuition of “quantum phase encoding” and Fourier basis states.
+- Python 3;
+- Jupyter Notebook, JupyterLab, or VS Code;
+- the packages listed in requirements.txt.
 
-* **Mathematical Foundations**
+Create an isolated environment:
 
-  * Single-qubit case (Hadamard gate equivalence)
-  * Extension to n qubits (tensor product structure)
-  * Matrix representation of $QFT_N$
+    python3 -m venv .venv
+    source .venv/bin/activate
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+    pip install jupyter
 
-* **Circuit Implementation**
-  Construction using Hadamard gates and controlled phase rotations ($R_k$ gates).
+On Windows PowerShell, activate the environment with:
 
-* **Applications**
+    .venv\Scripts\Activate.ps1
 
-  * Shor’s algorithm
-  * Quantum phase estimation
-  * Period finding problems
+## Running Locally
 
-* **Code Implementation**
-  Qiskit-based implementation of the QFT circuit and visualization of results.
+Start the English notebook:
 
----
+    jupyter notebook qft_notebook.ipynb
 
-## Prerequisites
+or the Italian notebook:
 
-Install the required dependencies (or use `requirements.txt`):
+    jupyter notebook qft_notebook_ita.ipynb
 
-```bash
-pip install qiskit qiskit-aer qiskit-ibm-runtime numpy scipy matplotlib seaborn pandas ipywidgets pylatexenc tqdm "qiskit[visualization]"
-```
+Run cells in order because later experiments reuse circuits, helper functions, and result tables created earlier.
 
----
+Aer-based ideal and noisy simulations can be executed without an IBM Quantum account.
 
-## How to Use
+## IBM Quantum Execution
 
-1. Clone this repository.
-2. Open `qft_notebook.ipynb` in Jupyter Lab, Jupyter Notebook, or VS Code.
-3. Run the notebook sequentially to follow the theoretical development and simulations.
+The hardware-execution sections use qiskit-ibm-runtime and require valid IBM Quantum credentials. Keep credentials outside version control and load them through environment variables or Qiskit's local account storage.
 
----
+Do not commit API tokens to .env files or notebook outputs.
 
-## Technologies Used
+Hardware availability, queue times, backend names, and runtime APIs may change. Re-run the transpilation and backend-selection cells against the account currently in use.
 
-* Python
-* Qiskit (quantum circuit construction and simulation)
-* Qiskit Aer (high-performance simulation backend)
-* Matplotlib / Seaborn (visualization)
+## Implemented Experiments
 
----
+### Correctness
 
-## Notes
+The notebooks compare statevectors and measurement outcomes for:
 
-This project is intended for educational purposes in quantum computing and quantum information theory.
+- manual QFT;
+- inverse QFT;
+- Qiskit's library implementation;
+- QFT followed by inverse QFT.
+
+### Noise
+
+A depolarizing noise model is used with AerSimulator to compare ideal and noisy distributions.
+
+### Approximation
+
+Small controlled-phase rotations can be omitted to reduce circuit depth. The notebooks compare approximation error and resource count as the threshold changes.
+
+### Performance
+
+CPU timings, circuit depth, gate count, and optional QPU execution data are collected to contrast simulation and hardware behaviour.
+
+## Repository Structure
+
+    .
+    ├── qft_notebook.ipynb
+    ├── qft_notebook_ita.ipynb
+    ├── QFT_Report.pdf
+    ├── requirements.txt
+    └── images/
+
+## Author
+
+**Lorenzo Pasini** — [FurTh3r](https://github.com/FurTh3r)
+
+## License
+
+No license file is currently included in this repository. Unless otherwise stated by the author, all rights are reserved.
